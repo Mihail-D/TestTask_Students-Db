@@ -8,6 +8,7 @@ public class TestTaskStudentsDbApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TestTaskStudentsDbApplication.class, args);
+        System.out.println("======== THE PROGRAM IS RUNNING ========");
     }
 
 }
