@@ -28,7 +28,6 @@ public class StudentDto {
     private LocalDate birthDate;
 
     @NotNull(message = "Group ID cannot be null.")
-    @NotNull(message = "Group ID cannot be empty or contain spaces.")
     private Long groupId;
 
     public StudentDto(Long id, String firstName, String lastName, String middleName, LocalDate birthDate, Long groupId) {
