@@ -7,9 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="students")
@@ -33,4 +31,13 @@ public class Student {
 
     @Column(name = "group_id")
     private Long groupId;
+
+    public Student(Long id, String firstName, String lastName, String middleName, LocalDate birthDate, Long groupId) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.birthDate = birthDate;
+        this.groupId = groupId;
+    }
 }

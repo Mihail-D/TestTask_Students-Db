@@ -11,11 +11,16 @@ import ru.trial.assignments.testtask_studentsdb.student.repository.StudentReposi
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+
 public class StudentServiceImpl implements StudentService{
 
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
+
+    public StudentServiceImpl(StudentRepository studentRepository, StudentMapper studentMapper) {
+        this.studentRepository = studentRepository;
+        this.studentMapper = studentMapper;
+    }
 
     @Override
     public void addStudent(StudentDto studentDto) {

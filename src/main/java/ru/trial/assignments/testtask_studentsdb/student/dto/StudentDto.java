@@ -2,12 +2,13 @@ package ru.trial.assignments.testtask_studentsdb.student.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Builder
 public class StudentDto {
 
@@ -24,11 +25,10 @@ public class StudentDto {
     private String middleName;
 
     @NotNull(message = "Birth Date cannot be null.")
-    @NotBlank(message = "Birth Date cannot be empty or contain spaces.")
     private LocalDate birthDate;
 
     @NotNull(message = "Group ID cannot be null.")
-    @NotBlank(message = "Group ID cannot be empty or contain spaces.")
+    @NotNull(message = "Group ID cannot be empty or contain spaces.")
     private Long groupId;
 
     public StudentDto(Long id, String firstName, String lastName, String middleName, LocalDate birthDate, Long groupId) {
