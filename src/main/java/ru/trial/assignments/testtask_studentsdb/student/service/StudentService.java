@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface StudentService {
     void addStudent(StudentDto studentDto);
+    void updateStudent(StudentDto studentDto);
+    void deleteStudent(StudentDto studentDto);
     //List<StudentDto> getStudents();
     //List<StudentDto> getStudentsByGroupNumber(String groupNumber);
     //List<StudentDto> getStudentsByLastName(String lastName);
-    //void editStudent(StudentDto studentDto);
-    //void deleteStudent(StudentDto studentDto);
 }

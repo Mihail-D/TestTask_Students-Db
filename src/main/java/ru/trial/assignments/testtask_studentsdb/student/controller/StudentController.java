@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto;
 import ru.trial.assignments.testtask_studentsdb.student.service.StudentService;
 
@@ -27,9 +25,15 @@ StudentService studentService;
         this.studentService = studentService;
     }
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Void> addStudent(@RequestBody @Valid StudentDto studentDto) {
         studentService.addStudent(studentDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping()
+    ResponseEntity<Void> updateStudent(@RequestBody @Valid StudentDto studentDto) {
+        studentService.updateStudent(studentDto);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
