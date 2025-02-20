@@ -1,8 +1,7 @@
 package ru.trial.assignments.testtask_studentsdb.student.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -12,8 +11,9 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @Entity
-@Table(name="students")
+@Table(name = "students")
 public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
@@ -21,22 +21,27 @@ public class Student {
 
     @NotNull(message = "First name cannot be null.")
     @NotBlank(message = "First name cannot be empty or contain spaces.")
+    @Size(min = 1, max = 50, message = "First name must be between 1 and 50 characters.")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @NotNull(message = "First name cannot be null.")
     @NotBlank(message = "First name cannot be empty or contain spaces.")
+    @Size(min = 1, max = 50, message = "Last name must be between 1 and 50 characters.")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Size(min = 1, max = 50, message = "Middle name must be between 1 and 50 characters.")
     @Column(name = "middle_name")
     private String middleName;
 
     @NotNull(message = "Birth Date cannot be null.")
+    @Past(message = "Birth Date must be in the past.")
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
     @NotNull(message = "Group ID cannot be null.")
+    @Positive(message = "Group ID must be positive.")
     @Column(name = "group_id")
     private Long groupId;
 

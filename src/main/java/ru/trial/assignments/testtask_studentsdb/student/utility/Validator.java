@@ -1,15 +1,52 @@
 package ru.trial.assignments.testtask_studentsdb.student.utility;
 
-import lombok.experimental.UtilityClass;
+import org.springframework.stereotype.Component;
+import ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto;
+import ru.trial.assignments.testtask_studentsdb.student.model.Student;
 import ru.trial.assignments.testtask_studentsdb.student.repository.StudentRepository;
 
-@UtilityClass
-public class Validator {
-    StudentRepository studentRepository;
+import java.time.LocalDate;
 
-    public boolean isStudentExists(Long studentId) {
+@Component
+public class Validator {
+
+    public boolean isStudentExists(Long studentId, StudentRepository studentRepository) {
         return studentRepository.existsById(studentId);
     }
 
+    public boolean isValidFirstName(String firstName) {
+        return firstName != null && !firstName.trim().isEmpty() && !firstName.isEmpty() && firstName.length() <= 50;
+    }
 
+    public boolean isValidLastName(String lastName) {
+        return lastName != null && !lastName.trim().isEmpty() && !lastName.isEmpty() && lastName.length() <= 50;
+    }
+
+    public boolean isValidMiddleName(String middleName) {
+        return middleName == null || (!middleName.isEmpty() && middleName.length() <= 50);
+    }
+
+    public boolean isValidBirthDate(LocalDate birthDate) {
+        return birthDate != null && birthDate.isBefore(LocalDate.now());
+    }
+
+    public boolean isValidGroupId(Long groupId) {
+        return groupId != null && groupId > 0;
+    }
+
+    public boolean isValidStudent(Student student) {
+        return isValidFirstName(student.getFirstName()) &&
+                isValidLastName(student.getLastName()) &&
+                isValidMiddleName(student.getMiddleName()) &&
+                isValidBirthDate(student.getBirthDate()) &&
+                isValidGroupId(student.getGroupId());
+    }
+
+    public boolean isValidStudentDto(StudentDto studentDto) {
+        return isValidFirstName(studentDto.getFirstName()) &&
+                isValidLastName(studentDto.getLastName()) &&
+                isValidMiddleName(studentDto.getMiddleName()) &&
+                isValidBirthDate(studentDto.getBirthDate()) &&
+                isValidGroupId(studentDto.getGroupId());
+    }
 }

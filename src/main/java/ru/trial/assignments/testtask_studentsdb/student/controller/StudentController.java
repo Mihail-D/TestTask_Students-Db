@@ -36,4 +36,10 @@ StudentService studentService;
         studentService.updateStudent(studentDto);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+
+    @DeleteMapping()
+    public ResponseEntity<Void> deleteStudent(@RequestBody @Valid StudentDto studentDto) {
+        studentService.deleteStudent(studentDto);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
