@@ -17,7 +17,12 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     Optional<Student> findByFirstNameAndLastNameAndMiddleNameAndBirthDateAndGroupId(
             String firstName, String lastName, String middleName, LocalDate birthDate, Long groupId);
 
-    @Query("SELECT new ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto(s.id, s.firstName, s.lastName, s.middleName, s.birthDate, s.groupId) " +
-            "FROM Student s WHERE s.lastName = :lastName")
+    @Query("SELECT new ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto(s.id, s.firstName, s.lastName, " +
+            "s.middleName, s.birthDate, s.groupId) " + "FROM Student s WHERE s.lastName = :lastName")
     List<StudentDto> findAllStudentsByLastName(@Param("lastName") String lastName);
+
+    @Query("SELECT new ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto(s.id, s.firstName, s.lastName, " +
+            "s.middleName, s.birthDate, s.groupId) " + "FROM Student s WHERE s.groupId = :groupId")
+    List<StudentDto> findAllStudentsByGroupId(@Param("groupId") String groupId);
+
 }

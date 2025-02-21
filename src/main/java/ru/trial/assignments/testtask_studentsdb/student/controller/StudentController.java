@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto;
@@ -20,7 +19,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping(path = "/students")
 public class StudentController {
-StudentService studentService;
+
+    StudentService studentService;
 
     @Autowired
     public StudentController(StudentService studentService) {
@@ -45,8 +45,14 @@ StudentService studentService;
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping()
+    @GetMapping("/byLastName")
     public List<StudentDto> findAllStudentsByLastName(@Valid String lastName) {
         return studentService.findAllStudentsByLastName(lastName);
     }
+
+    @GetMapping("/byGroupNumber")
+    public List<StudentDto> getStudentsByGroupNumber(@Valid String groupId) {
+        return studentService.getStudentsByGroupNumber(groupId);
+    }
+
 }

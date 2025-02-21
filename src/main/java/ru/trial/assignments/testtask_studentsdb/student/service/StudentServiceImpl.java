@@ -69,11 +69,10 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAllStudentsByLastName(lastName);
     }
 
-    /*    @Override
-
-    public List<StudentDto> getStudentsByGroupNumber(String groupNumber) {
-        return List.of();
-    }*/
+    @Override
+    public List<StudentDto> getStudentsByGroupNumber(String groupId) {
+        return studentRepository.findAllStudentsByGroupId(groupId);
+    }
 
 
 
