@@ -9,6 +9,7 @@ import ru.trial.assignments.testtask_studentsdb.student.model.Student;
 import ru.trial.assignments.testtask_studentsdb.student.repository.StudentRepository;
 import ru.trial.assignments.testtask_studentsdb.student.utility.Validator;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -63,6 +64,11 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.delete(student);
     }
 
+    @Override
+    public List<StudentDto> findAllStudentsByLastName(String lastName) {
+        return studentRepository.findAllStudentsByLastName(lastName);
+    }
+
     /*    @Override
 
     public List<StudentDto> getStudentsByGroupNumber(String groupNumber) {
@@ -75,11 +81,6 @@ public class StudentServiceImpl implements StudentService {
     /*    @Override
     public List<StudentDto> getStudents() {
         return null;
-    }*/
-
-/*    @Override
-    public List<StudentDto> getStudentsByLastName(String lastName) {
-        return List.of();
     }*/
 
 }

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto;
 import ru.trial.assignments.testtask_studentsdb.student.service.StudentService;
 
+import java.util.List;
+
 @Slf4j
 @Validated
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/students")
 public class StudentController {
@@ -41,5 +43,10 @@ StudentService studentService;
     public ResponseEntity<Void> deleteStudent(@RequestBody @Valid StudentDto studentDto) {
         studentService.deleteStudent(studentDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping()
+    public List<StudentDto> findAllStudentsByLastName(@Valid String lastName) {
+        return studentService.findAllStudentsByLastName(lastName);
     }
 }
