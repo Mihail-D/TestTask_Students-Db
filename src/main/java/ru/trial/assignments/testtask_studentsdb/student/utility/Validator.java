@@ -6,6 +6,7 @@ import ru.trial.assignments.testtask_studentsdb.student.model.Student;
 import ru.trial.assignments.testtask_studentsdb.student.repository.StudentRepository;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Component
 public class Validator {
@@ -42,11 +43,22 @@ public class Validator {
                 isValidGroupId(student.getGroupId());
     }
 
-    public boolean isValidStudentDto(StudentDto studentDto) {
-        return isValidFirstName(studentDto.getFirstName()) &&
-                isValidLastName(studentDto.getLastName()) &&
-                isValidMiddleName(studentDto.getMiddleName()) &&
-                isValidBirthDate(studentDto.getBirthDate()) &&
-                isValidGroupId(studentDto.getGroupId());
+    public Optional<String> isValidStudentDto(StudentDto studentDto) {
+        if (!isValidFirstName(studentDto.getFirstName())) {
+            return Optional.of("firstName");
+        }
+        if (!isValidLastName(studentDto.getLastName())) {
+            return Optional.of("lastName");
+        }
+        if (!isValidMiddleName(studentDto.getMiddleName())) {
+            return Optional.of("middleName");
+        }
+        if (!isValidBirthDate(studentDto.getBirthDate())) {
+            return Optional.of("birthDate");
+        }
+        if (!isValidGroupId(studentDto.getGroupId())) {
+            return Optional.of("groupId");
+        }
+        return Optional.empty();
     }
 }

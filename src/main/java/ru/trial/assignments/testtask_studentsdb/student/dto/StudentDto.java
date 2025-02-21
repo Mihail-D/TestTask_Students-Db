@@ -1,6 +1,9 @@
 package ru.trial.assignments.testtask_studentsdb.student.dto;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,6 +18,8 @@ import java.time.LocalDate;
 @Builder
 public class StudentDto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "First name cannot be null.")
@@ -23,8 +28,8 @@ public class StudentDto {
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @NotNull(message = "First name cannot be null.")
-    @NotBlank(message = "First name cannot be empty or contain spaces.")
+    @NotNull(message = "Last name cannot be null.")
+    @NotBlank(message = "Last name cannot be empty or contain spaces.")
     @Size(min = 1, max = 50, message = "Last name must be between 1 and 50 characters.")
     @Column(name = "last_name", nullable = false)
     private String lastName;
