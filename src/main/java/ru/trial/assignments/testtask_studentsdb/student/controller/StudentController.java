@@ -55,4 +55,8 @@ public class StudentController {
         return studentService.getStudentsByGroupNumber(groupId);
     }
 
+    @GetMapping("/all")
+    public List<StudentDto> getStudents() {
+        return studentService.getStudents();
+    }
 }

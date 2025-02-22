@@ -11,9 +11,9 @@ import ru.trial.assignments.testtask_studentsdb.student.utility.Validator;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
@@ -74,12 +74,11 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAllStudentsByGroupId(groupId);
     }
 
-
-
-
-    /*    @Override
+    @Override
     public List<StudentDto> getStudents() {
-        return null;
-    }*/
+        return studentRepository.findAll().stream()
+                .map(studentMapper::toDto)
+                .collect(Collectors.toList());
+    }
 
 }

@@ -11,5 +11,5 @@ public interface StudentService {
     void deleteStudent(StudentDto studentDto);
     List<StudentDto> findAllStudentsByLastName(String lastName);
     List<StudentDto> getStudentsByGroupNumber(String groupId);
-    //List<StudentDto> getStudents();
+    List<StudentDto> getStudents();
 }

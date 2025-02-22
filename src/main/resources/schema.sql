@@ -1,7 +1,7 @@
-CREATE TABLE "group" (
+CREATE TABLE groups (
     id BIGINT PRIMARY KEY,
-    number VARCHAR(50) NOT NULL,
-    faculty_name VARCHAR(100) NOT NULL
+    group_id VARCHAR(50) NOT NULL,
+    group_name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE students (
@@ -11,5 +11,5 @@ CREATE TABLE students (
     middle_name VARCHAR(50),
     birth_date DATE NOT NULL,
     group_id BIGINT,
-    CONSTRAINT fk_group FOREIGN KEY (group_id) REFERENCES "group"(id) ON DELETE RESTRICT
+    CONSTRAINT fk_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE RESTRICT
 );
