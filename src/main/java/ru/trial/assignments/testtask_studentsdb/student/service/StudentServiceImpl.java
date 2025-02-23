@@ -7,7 +7,7 @@ import ru.trial.assignments.testtask_studentsdb.student.exceptions.NotFoundExcep
 import ru.trial.assignments.testtask_studentsdb.student.mapper.StudentMapper;
 import ru.trial.assignments.testtask_studentsdb.student.model.Student;
 import ru.trial.assignments.testtask_studentsdb.student.repository.StudentRepository;
-import ru.trial.assignments.testtask_studentsdb.student.utility.Validator;
+import ru.trial.assignments.testtask_studentsdb.utility.Validator;
 
 import java.util.List;
 import java.util.Optional;

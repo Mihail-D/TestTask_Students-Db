@@ -7,7 +7,7 @@ import ru.trial.assignments.testtask_studentsdb.group.model.Group;
 import ru.trial.assignments.testtask_studentsdb.group.repository.GroupRepository;
 import ru.trial.assignments.testtask_studentsdb.student.exceptions.ClassFieldErrorException;
 import ru.trial.assignments.testtask_studentsdb.student.exceptions.NotFoundException;
-import ru.trial.assignments.testtask_studentsdb.student.utility.Validator;
+import ru.trial.assignments.testtask_studentsdb.utility.Validator;
 
 import java.util.List;
 import java.util.Optional;

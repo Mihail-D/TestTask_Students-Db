@@ -1,10 +1,9 @@
-package ru.trial.assignments.testtask_studentsdb.student.utility;
+package ru.trial.assignments.testtask_studentsdb.utility;
 
 import org.springframework.stereotype.Component;
 import ru.trial.assignments.testtask_studentsdb.group.dto.GroupDto;
 import ru.trial.assignments.testtask_studentsdb.group.repository.GroupRepository;
 import ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto;
-import ru.trial.assignments.testtask_studentsdb.student.model.Student;
 import ru.trial.assignments.testtask_studentsdb.student.repository.StudentRepository;
 
 import java.time.LocalDate;
@@ -35,14 +34,6 @@ public class Validator {
 
     public boolean isValidGroupId(Long groupId) {
         return groupId != null && groupId > 0;
-    }
-
-    public boolean isValidStudent(Student student) {
-        return isValidFirstName(student.getFirstName()) &&
-                isValidLastName(student.getLastName()) &&
-                isValidMiddleName(student.getMiddleName()) &&
-                isValidBirthDate(student.getBirthDate()) &&
-                isValidGroupId(student.getGroupId());
     }
 
     public Optional<String> isValidStudentDto(StudentDto studentDto) {
