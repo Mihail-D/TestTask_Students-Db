@@ -1,7 +1,6 @@
 package ru.trial.assignments.testtask_studentsdb.student.service;
 
 import ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto;
-import ru.trial.assignments.testtask_studentsdb.student.model.Student;
 
 import java.util.List;
 

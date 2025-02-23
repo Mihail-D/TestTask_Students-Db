@@ -26,7 +26,6 @@ public class StudentServiceImpl implements StudentService {
         this.validator = validator;
     }
 
-    @Override
     public void addStudent(StudentDto studentDto) {
         validator.isValidStudentDto(studentDto).ifPresent(field -> {
             throw new ClassFieldErrorException(StudentDto.class, "Invalid field: " + field);
@@ -40,7 +39,8 @@ public class StudentServiceImpl implements StudentService {
         }
 
         Student student = studentMapper.toEntity(studentDto);
-        studentRepository.save(student);
+        Student savedStudent = studentRepository.save(student);
+        studentMapper.toDto(savedStudent);
     }
 
     @Override

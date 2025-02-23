@@ -1,6 +1,8 @@
 package ru.trial.assignments.testtask_studentsdb.student.utility;
 
 import org.springframework.stereotype.Component;
+import ru.trial.assignments.testtask_studentsdb.group.dto.GroupDto;
+import ru.trial.assignments.testtask_studentsdb.group.repository.GroupRepository;
 import ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto;
 import ru.trial.assignments.testtask_studentsdb.student.model.Student;
 import ru.trial.assignments.testtask_studentsdb.student.repository.StudentRepository;
@@ -60,5 +62,19 @@ public class Validator {
             return Optional.of("groupId");
         }
         return Optional.empty();
+    }
+
+    public Optional<String> isValidGroupDto(GroupDto groupDto) {
+        if (groupDto.getGroupId() == null || groupDto.getGroupId().trim().isEmpty()) {
+            return Optional.of("groupId");
+        }
+        if (groupDto.getGroupName() == null || groupDto.getGroupName().trim().isEmpty() || groupDto.getGroupName().length() > 100) {
+            return Optional.of("groupName");
+        }
+        return Optional.empty();
+    }
+
+    public boolean isGroupExists(Long groupId, GroupRepository groupRepository) {
+        return groupRepository.existsById(groupId);
     }
 }
