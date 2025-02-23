@@ -9,7 +9,9 @@ import ru.trial.assignments.testtask_studentsdb.student.exceptions.ClassFieldErr
 import ru.trial.assignments.testtask_studentsdb.student.exceptions.NotFoundException;
 import ru.trial.assignments.testtask_studentsdb.student.utility.Validator;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GroupServiceImpl implements GroupService {
@@ -62,8 +64,11 @@ public class GroupServiceImpl implements GroupService {
         groupRepository.delete(group);
     }
 
-/*    @Override
+    @Override
     public List<GroupDto> getGroups() {
-        return List.of();
-    }*/
+        return groupRepository.findAll().stream()
+                .map(groupMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
 }

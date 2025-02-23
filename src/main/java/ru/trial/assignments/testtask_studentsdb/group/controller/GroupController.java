@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.trial.assignments.testtask_studentsdb.group.dto.GroupDto;
 import ru.trial.assignments.testtask_studentsdb.group.service.GroupService;
 
+import java.util.List;
+
 @Slf4j
 @Validated
 @RestController
@@ -42,5 +44,10 @@ public class GroupController {
     public ResponseEntity<Void> deleteGroup(@RequestBody @Valid GroupDto groupDto) {
         groupService.deleteGroup(groupDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/allGroups")
+    public List<GroupDto> getStudents() {
+        return groupService.getGroups();
     }
 }
