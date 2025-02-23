@@ -45,17 +45,17 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/byLastName")
-    public List<StudentDto> findAllStudentsByLastName(@Valid String lastName) {
+    @GetMapping("/{lastName}/students")
+    public List<StudentDto> findAllStudentsByLastName(@PathVariable @Valid String lastName) {
         return studentService.findAllStudentsByLastName(lastName);
     }
 
-    @GetMapping("/byGroupNumber")
-    public List<StudentDto> getStudentsByGroupNumber(@Valid String groupId) {
+    @GetMapping("/{groupId}/students")
+    public List<StudentDto> getStudentsByGroupNumber(@PathVariable @Valid String groupId) {
         return studentService.getStudentsByGroupNumber(groupId);
     }
 
-    @GetMapping("/allStudents")
+    @GetMapping("/students")
     public List<StudentDto> getStudents() {
         return studentService.getStudents();
     }

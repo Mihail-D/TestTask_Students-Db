@@ -46,7 +46,7 @@ public class GroupController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @GetMapping("/allGroups")
+    @GetMapping("/groups")
     public List<GroupDto> getStudents() {
         return groupService.getGroups();
     }
