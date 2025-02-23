@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.trial.assignments.testtask_studentsdb.group.dto.GroupDto;
 import ru.trial.assignments.testtask_studentsdb.group.service.GroupService;
-import ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto;
 
 @Slf4j
 @Validated
@@ -37,5 +36,11 @@ public class GroupController {
     ResponseEntity<Void> updateGroup(@RequestBody @Valid GroupDto groupDto) {
         groupService.updateGroup(groupDto);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<Void> deleteGroup(@RequestBody @Valid GroupDto groupDto) {
+        groupService.deleteGroup(groupDto);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

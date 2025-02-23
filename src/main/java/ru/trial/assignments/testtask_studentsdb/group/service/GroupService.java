@@ -7,7 +7,7 @@ import java.util.List;
 public interface GroupService {
     void addGroup(GroupDto groupDto);
     void updateGroup(GroupDto groupDto);
-    //void deleteGroup(GroupDto groupDto);
+    void deleteGroup(GroupDto groupDto);
     //List<GroupDto> getGroups();
 
 }

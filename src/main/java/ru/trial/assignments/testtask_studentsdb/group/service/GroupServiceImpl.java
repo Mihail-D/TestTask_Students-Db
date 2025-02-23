@@ -7,7 +7,6 @@ import ru.trial.assignments.testtask_studentsdb.group.model.Group;
 import ru.trial.assignments.testtask_studentsdb.group.repository.GroupRepository;
 import ru.trial.assignments.testtask_studentsdb.student.exceptions.ClassFieldErrorException;
 import ru.trial.assignments.testtask_studentsdb.student.exceptions.NotFoundException;
-import ru.trial.assignments.testtask_studentsdb.student.model.Student;
 import ru.trial.assignments.testtask_studentsdb.student.utility.Validator;
 
 import java.util.Optional;
@@ -51,10 +50,17 @@ public class GroupServiceImpl implements GroupService {
         groupRepository.save(group);
     }
 
-/*    @Override
+    @Override
     public void deleteGroup(GroupDto groupDto) {
-
-    }*/
+        if (groupDto.getId() == null) {
+            throw new IllegalArgumentException("Group ID must not be null");
+        }
+        if (!validator.isGroupExists(groupDto.getId(), groupRepository)) {
+            throw new NotFoundException(Group.class, " not found");
+        }
+        Group group = groupMapper.toEntity(groupDto);
+        groupRepository.delete(group);
+    }
 
 /*    @Override
     public List<GroupDto> getGroups() {
