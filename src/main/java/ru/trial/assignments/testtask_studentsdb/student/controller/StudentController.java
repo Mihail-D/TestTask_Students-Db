@@ -3,13 +3,13 @@ package ru.trial.assignments.testtask_studentsdb.student.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto;
 import ru.trial.assignments.testtask_studentsdb.student.service.StudentService;
+import ru.trial.assignments.testtask_studentsdb.student.service.metrics.MetricService;
 
 import java.util.List;
 
@@ -20,12 +20,8 @@ import java.util.List;
 @RequestMapping(path = "/students")
 public class StudentController {
 
-    StudentService studentService;
-
-    @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
+    private final StudentService studentService;
+    private final MetricService metricService;
 
     @PostMapping()
     public ResponseEntity<Void> addStudent(@RequestBody @Valid StudentDto studentDto) {
@@ -57,6 +53,7 @@ public class StudentController {
 
     @GetMapping("/students")
     public List<StudentDto> getStudents() {
+        metricService.doCount();
         return studentService.getStudents();
     }
 }
