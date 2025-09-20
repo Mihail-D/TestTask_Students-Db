@@ -1,9 +1,10 @@
 package ru.trial.assignments.testtask_studentsdb.group.controller;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import ru.trial.assignments.testtask_studentsdb.group.dto.GroupDto;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class GroupControllerTest {
 
     @Mock
@@ -23,10 +25,6 @@ public class GroupControllerTest {
 
     @InjectMocks
     private GroupController groupController;
-
-    public GroupControllerTest() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Test
     void addGroup_createsGroup() {
@@ -62,7 +60,7 @@ public class GroupControllerTest {
     }
 
     @Test
-    void getGroups_returnsAllGroups() {
+    void getStudents_returnsAllGroups() {
         List<GroupDto> groups = Collections.singletonList(new GroupDto());
         when(groupService.getGroups()).thenReturn(groups);
 

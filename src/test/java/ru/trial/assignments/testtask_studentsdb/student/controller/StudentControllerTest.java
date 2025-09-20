@@ -1,13 +1,15 @@
 package ru.trial.assignments.testtask_studentsdb.student.controller;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import ru.trial.assignments.testtask_studentsdb.student.dto.StudentDto;
 import ru.trial.assignments.testtask_studentsdb.student.service.StudentService;
+import ru.trial.assignments.testtask_studentsdb.student.service.metrics.MetricService;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,17 +18,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class StudentControllerTest {
 
     @Mock
     private StudentService studentService;
 
+    @Mock
+    private MetricService metricService;
+
     @InjectMocks
     private StudentController studentController;
-
-    public StudentControllerTest() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Test
     void addStudent_createsStudent() {
@@ -89,10 +91,12 @@ public class StudentControllerTest {
     void getStudents_returnsAllStudents() {
         List<StudentDto> students = Collections.singletonList(new StudentDto());
         when(studentService.getStudents()).thenReturn(students);
+        doNothing().when(metricService).doCount();
 
         List<StudentDto> response = studentController.getStudents();
 
         assertEquals(students, response);
         verify(studentService, times(1)).getStudents();
+        verify(metricService, times(1)).doCount();
     }
 }
